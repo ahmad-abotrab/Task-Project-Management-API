@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use App\Storage\JsonStorage;
+use App\Repo\TaskRepository;
+use App\CLI\Application;
+
+$filePath = __DIR__ . '/../data/tasks.json';
+
+$storage = new JsonStorage($filePath);
+$repo    = new TaskRepository($storage);
+$app     = new Application($repo);
+
+$app->run($argv);
